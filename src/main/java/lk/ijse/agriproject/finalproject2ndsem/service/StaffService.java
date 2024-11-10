@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface StaffService {
     void saveStaff(StaffDTO staffDTO);
-    void updateStaff(StaffDTO staffDTO);
+    void updateStaff(String id,StaffDTO staffDTO);
     void deleteStaff(String id);
     List<StaffDTO> getAllStaff();
     StaffResponse getSelectStaffById(String id);

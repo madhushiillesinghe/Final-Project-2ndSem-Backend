@@ -40,8 +40,8 @@ public class EquipmentServiceIMPL implements EquipmentService {
     }
 
     @Override
-    public void updateEquipment(EquipmentDTO equipmentDTO) {
-        Optional<EquipmentEntity> updateByCode=equipmentDAO.findById(equipmentDTO.getId());
+    public void updateEquipment(String code,EquipmentDTO equipmentDTO) {
+        Optional<EquipmentEntity> updateByCode=equipmentDAO.findById(code);
         if(!updateByCode.isPresent()){
             throw new EquipmentNotFoundException("Equipment not found");
         }else {

@@ -31,8 +31,8 @@ public class StaffServiceIMPL implements StaffService {
         }
     }
     @Override
-    public void updateStaff(StaffDTO staffDTO) {
-        Optional<StaffEntity> updateById=staffDAO.findById(staffDTO.getId());
+    public void updateStaff(String id,StaffDTO staffDTO) {
+        Optional<StaffEntity> updateById=staffDAO.findById(id);
         if(!updateById.isPresent()){
             throw new StaffNotFoundException("Staff not found");
         }else {

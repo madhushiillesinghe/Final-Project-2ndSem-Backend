@@ -9,7 +9,7 @@ import java.util.List;
 
 public interface UserService {
     void saveUser(UserDTO userDTO);
-    void updateUser(UserDTO userDTO);
+    void updateUser(String id,UserDTO userDTO);
     void deleteUser(String userEmail);
     List<UserDTO> getAllUsers();
     UserResponse getSelectUserByEmail(String userEmail);

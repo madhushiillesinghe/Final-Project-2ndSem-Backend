@@ -11,7 +11,7 @@ import java.util.List;
 
 public interface MoniteringLogService {
     void saveMoniteringLog(MoniteringLogDTO moniteringLogDTO);
-    void updateMoniteringLog(MoniteringLogDTO moniteringLogDTO);
+    void updateMoniteringLog(String id,MoniteringLogDTO moniteringLogDTO);
     void deleteMoniteringLog(String id);
     List<MoniteringLogDTO> getAllMoniteringLogs();
     MoniteringLogResponse getSelectMoniteringLogById(String id);

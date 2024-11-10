@@ -10,7 +10,7 @@ import java.util.List;
 
 public interface CropService {
     void saveCrop(CropDTO cropDTO);
-    void updateCrop(CropDTO cropDTO);
+    void updateCrop(String code,CropDTO cropDTO);
     void deleteCrop(String code);
     List<CropDTO> getAllCrops();
     CropResponse getSelectCropByCode(String code);

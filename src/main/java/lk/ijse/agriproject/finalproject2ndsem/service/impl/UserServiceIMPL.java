@@ -34,8 +34,8 @@ public class UserServiceIMPL implements UserService {
     }
 
     @Override
-    public void updateUser(UserDTO userDTO) {
-        Optional<UserEntity> updateByEmail=userDao.findById(userDTO.getEmail());
+    public void updateUser(String id,UserDTO userDTO) {
+        Optional<UserEntity> updateByEmail=userDao.findById(id);
         if(!updateByEmail.isPresent()){
             throw new UserNotFoundException("User not found");
         }else {

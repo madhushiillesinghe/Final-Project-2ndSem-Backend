@@ -42,8 +42,8 @@ public class MoniteringLogServiceIMPL implements MoniteringLogService {
     }
 
     @Override
-    public void updateMoniteringLog(MoniteringLogDTO moniteringLogDTO) {
-        Optional<MoniteringLogEntity> updateById=moniteringLogDAO.findById(moniteringLogDTO.getLogCode());
+    public void updateMoniteringLog(String code,MoniteringLogDTO moniteringLogDTO) {
+        Optional<MoniteringLogEntity> updateById=moniteringLogDAO.findById(code);
         if(!updateById.isPresent()){
             throw new MoniteringLogNotFoundException("MoniteringLog not found");
         }else {

@@ -35,8 +35,8 @@ public class VehicleServiceIMPL implements VehicleService {
     }
 
     @Override
-    public void updateVehicle(VehicleDTO vehicleDTO) {
-        Optional<VehicalEntity> updateByCode=vehicleDAO.findById(vehicleDTO.getVehicleCode());
+    public void updateVehicle(String code,VehicleDTO vehicleDTO) {
+        Optional<VehicalEntity> updateByCode=vehicleDAO.findById(code);
         if(!updateByCode.isPresent()){
             throw new VehicleNotFoundException("Vehicle not found");
         }else {

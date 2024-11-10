@@ -34,8 +34,8 @@ public class FieldServiceIMPL implements FieldService {
     }
 
     @Override
-    public void updateField(FieldDTO fieldDTO) {
-        Optional<FieldEntity> updateByCode=fieldDAO.findById(fieldDTO.getFieldCode());
+    public void updateField(String code,FieldDTO fieldDTO) {
+        Optional<FieldEntity> updateByCode=fieldDAO.findById(code);
         if(!updateByCode.isPresent()){
             throw new FieldNotFoundException("Field not found");
         }else {
