@@ -23,7 +23,5 @@ public class EquipmentEntity implements SuperEntity {
     @OneToOne
     @JoinColumn(name = "field_code", referencedColumnName = "field_code")
     private FieldEntity field;
-
-
 }
 

@@ -34,7 +34,6 @@ public class StaffEntity implements SuperEntity {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
-
     @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private EquipmentEntity equipments;
 
