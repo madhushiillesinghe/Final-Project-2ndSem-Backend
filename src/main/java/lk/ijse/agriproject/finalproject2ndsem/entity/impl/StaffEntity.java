@@ -21,7 +21,7 @@ import java.util.List;
 @Entity
 public class StaffEntity implements SuperEntity {
     @Id
-    private String id;
+    private String staff_id;
     private Name name;
     private String designation;
     @Enumerated(EnumType.STRING)
@@ -46,7 +46,7 @@ public class StaffEntity implements SuperEntity {
     @ManyToMany
     @JoinTable(
             name = "staff_field",
-            joinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id"),
+            joinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "staff_id"),
             inverseJoinColumns = @JoinColumn(name = "field_code", referencedColumnName = "field_code")
     )
     private List<FieldEntity> fields = new ArrayList<>();

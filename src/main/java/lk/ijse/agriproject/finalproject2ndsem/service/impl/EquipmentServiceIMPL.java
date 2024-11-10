@@ -7,10 +7,14 @@ import lk.ijse.agriproject.finalproject2ndsem.customObj.impl.CropErrorResponse;
 import lk.ijse.agriproject.finalproject2ndsem.customObj.impl.EquipmentErrorResponse;
 import lk.ijse.agriproject.finalproject2ndsem.dao.CropDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dao.EquipmentDAO;
+import lk.ijse.agriproject.finalproject2ndsem.dao.FieldDAO;
+import lk.ijse.agriproject.finalproject2ndsem.dao.StaffDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.CropDTO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.EquipmentDTO;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.CropEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.EquipmentEntity;
+import lk.ijse.agriproject.finalproject2ndsem.entity.impl.FieldEntity;
+import lk.ijse.agriproject.finalproject2ndsem.entity.impl.StaffEntity;
 import lk.ijse.agriproject.finalproject2ndsem.exception.CropNotFoundException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.EquipmentNotFoundException;
@@ -30,6 +34,11 @@ public class EquipmentServiceIMPL implements EquipmentService {
     @Autowired
     private EquipmentDAO equipmentDAO;
     @Autowired
+    private StaffDAO staffDAO;
+
+    @Autowired
+    private FieldDAO fieldDAO;
+    @Autowired
     private Mapping mapping;
     @Override
     public void saveEquipment(EquipmentDTO equipmentDTO) {
@@ -41,6 +50,8 @@ public class EquipmentServiceIMPL implements EquipmentService {
 
     @Override
     public void updateEquipment(String code,EquipmentDTO equipmentDTO) {
+        Optional<StaffEntity> staffDAOById = staffDAO.findById(equipmentDTO.getStaff_id());
+        Optional<FieldEntity> fieldDAOById = fieldDAO.findById(equipmentDTO.getField_code());
         Optional<EquipmentEntity> updateByCode=equipmentDAO.findById(code);
         if(!updateByCode.isPresent()){
             throw new EquipmentNotFoundException("Equipment not found");
@@ -48,6 +59,8 @@ public class EquipmentServiceIMPL implements EquipmentService {
             updateByCode.get().setName(equipmentDTO.getName());
             updateByCode.get().setType(equipmentDTO.getType());
             updateByCode.get().setStatus(equipmentDTO.getStatus());
+            updateByCode.get().setStaff(staffDAOById.get());
+            updateByCode.get().setField(fieldDAOById.get());
 
         }
     }

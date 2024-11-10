@@ -35,8 +35,8 @@ public class FieldEntity implements SuperEntity {
     @OneToMany(mappedBy = "field")
     private List<MoniteringLogEntity> monitoringLogs = new ArrayList<>();
 
-    @OneToOne(mappedBy = "field", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private EquipmentEntity equipments;
+    @OneToMany(mappedBy = "field", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    private List<EquipmentEntity> equipments;
 
     @ManyToMany(mappedBy = "fields")
     private List<StaffEntity> staffEntityList = new ArrayList<>();

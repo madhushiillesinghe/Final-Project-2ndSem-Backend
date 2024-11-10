@@ -39,7 +39,7 @@ public class MoniteringLogEntity implements SuperEntity {
         @JoinTable(
                 name = "monitoring_log_staff",
                 joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "log_code"),
-                inverseJoinColumns = @JoinColumn(name = "staff_id",referencedColumnName = "id")
+                inverseJoinColumns = @JoinColumn(name = "staff_id",referencedColumnName = "staff_id")
         )
         private List<StaffEntity> staff = new ArrayList<>();
     }

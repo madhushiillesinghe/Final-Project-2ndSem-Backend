@@ -32,9 +32,7 @@ public class VehicleServiceIMPL implements VehicleService {
 
     @Override
     public void saveVehicle(VehicleDTO vehicleDTO) {
-        Optional<StaffEntity> staffId=staffDAO.findById(vehicleDTO.getStaff_id());
         VehicalEntity vehicalEntity = mapping.convertToVehicleEntity(vehicleDTO);
-        vehicalEntity.setStaff(staffId.get());
         VehicalEntity vehiclesave= vehicleDAO.save(vehicalEntity);
         System.out.println(vehicalEntity+"At impl");
          if(vehiclesave == null && vehiclesave.getVehicle_code()== null ) {
@@ -45,6 +43,7 @@ public class VehicleServiceIMPL implements VehicleService {
     @Override
     public void updateVehicle(String code,VehicleDTO vehicleDTO) {
         Optional<VehicalEntity> updateByCode=vehicleDAO.findById(code);
+        Optional<StaffEntity> staffDAOById = staffDAO.findById(vehicleDTO.getStaff_id());
         if(!updateByCode.isPresent()){
             throw new VehicleNotFoundException("Vehicle not found");
         }else {
@@ -53,7 +52,7 @@ public class VehicleServiceIMPL implements VehicleService {
             updateByCode.get().setRemarks(vehicleDTO.getRemarks());
             updateByCode.get().setFuel_type(vehicleDTO.getFuel_type());
             updateByCode.get().setLicense_plate_no(vehicleDTO.getLicense_plate_no());
-//            updateByCode.get().setStaff(updateId.get());
+            updateByCode.get().setStaff(staffDAOById.get());
         }
     }
 

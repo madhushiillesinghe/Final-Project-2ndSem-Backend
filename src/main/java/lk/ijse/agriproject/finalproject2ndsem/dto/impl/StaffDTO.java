@@ -21,7 +21,7 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class StaffDTO implements SuperDTO, StaffResponse {
-    private String id;
+    private String staff_id;
     private Name name;
     private String designation;
     private Gender gender;
