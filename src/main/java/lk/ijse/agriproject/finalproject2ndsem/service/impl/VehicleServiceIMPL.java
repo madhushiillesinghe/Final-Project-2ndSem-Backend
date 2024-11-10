@@ -3,8 +3,10 @@ package lk.ijse.agriproject.finalproject2ndsem.service.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.agriproject.finalproject2ndsem.customObj.VehicleResponse;
 import lk.ijse.agriproject.finalproject2ndsem.customObj.impl.VehicleErrorResponse;
+import lk.ijse.agriproject.finalproject2ndsem.dao.StaffDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dao.VehicleDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.VehicleDTO;
+import lk.ijse.agriproject.finalproject2ndsem.entity.impl.StaffEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.VehicalEntity;
 import lk.ijse.agriproject.finalproject2ndsem.exception.CropNotFoundException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
@@ -24,12 +26,18 @@ public class VehicleServiceIMPL implements VehicleService {
     @Autowired
     private VehicleDAO vehicleDAO;
     @Autowired
+    private StaffDAO staffDAO;
+    @Autowired
     private Mapping mapping;
 
     @Override
     public void saveVehicle(VehicleDTO vehicleDTO) {
-        VehicalEntity vehiclesave= vehicleDAO.save(mapping.convertToVehicleEntity(vehicleDTO));
-        if(vehiclesave == null && vehiclesave.getVehicle_code()== null ) {
+        Optional<StaffEntity> staffId=staffDAO.findById(vehicleDTO.getStaff_id());
+        VehicalEntity vehicalEntity = mapping.convertToVehicleEntity(vehicleDTO);
+        vehicalEntity.setStaff(staffId.get());
+        VehicalEntity vehiclesave= vehicleDAO.save(vehicalEntity);
+        System.out.println(vehicalEntity+"At impl");
+         if(vehiclesave == null && vehiclesave.getVehicle_code()== null ) {
             throw new DataPersistFailedException("Cannot saved Vehicle");
         }
     }
@@ -40,11 +48,12 @@ public class VehicleServiceIMPL implements VehicleService {
         if(!updateByCode.isPresent()){
             throw new VehicleNotFoundException("Vehicle not found");
         }else {
-            updateByCode.get().setVehicle_category(vehicleDTO.getVehicleCategory());
+            updateByCode.get().setVehicle_category(vehicleDTO.getVehicle_category());
             updateByCode.get().setStatus(vehicleDTO.getStatus());
             updateByCode.get().setRemarks(vehicleDTO.getRemarks());
-            updateByCode.get().setFuel_type(vehicleDTO.getFuelType());
-            updateByCode.get().setLicense_plate_no(vehicleDTO.getLicensePlateNo());
+            updateByCode.get().setFuel_type(vehicleDTO.getFuel_type());
+            updateByCode.get().setLicense_plate_no(vehicleDTO.getLicense_plate_no());
+//            updateByCode.get().setStaff(updateId.get());
         }
     }
 

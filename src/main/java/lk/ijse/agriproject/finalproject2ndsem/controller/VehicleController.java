@@ -1,11 +1,10 @@
 package lk.ijse.agriproject.finalproject2ndsem.controller;
 
-import lk.ijse.agriproject.finalproject2ndsem.customObj.StaffResponse;
-import lk.ijse.agriproject.finalproject2ndsem.dto.impl.StaffDTO;
+import lk.ijse.agriproject.finalproject2ndsem.customObj.VehicleResponse;
+import lk.ijse.agriproject.finalproject2ndsem.dto.impl.VehicleDTO;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
-import lk.ijse.agriproject.finalproject2ndsem.exception.StaffNotFoundException;
-import lk.ijse.agriproject.finalproject2ndsem.exception.UserNotFoundException;
-import lk.ijse.agriproject.finalproject2ndsem.service.StaffService;
+import lk.ijse.agriproject.finalproject2ndsem.exception.VehicleNotFoundException;
+import lk.ijse.agriproject.finalproject2ndsem.service.VehicleService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,31 +16,32 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/staff")
-public class StaffController {
+@RequestMapping(value = "/api/v1/vehicles")
+public class VehicleController {
     @Autowired
-    private StaffService staffService;
-    static Logger logger = LoggerFactory.getLogger(StaffController.class);
+    private VehicleService vehicleService;
+    static Logger logger = LoggerFactory.getLogger(VehicleController.class);
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void > createStaff(@RequestBody StaffDTO buildStaffDTO ){
+    public ResponseEntity<Void > createVehicle(@RequestBody VehicleDTO buildVehicleDTO ){
         try {
-            staffService.saveStaff(buildStaffDTO);
-            logger.info("Staff saved : " + buildStaffDTO);
+            vehicleService.saveVehicle(buildVehicleDTO);
+            logger.info("Vehicle saved : " + buildVehicleDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistFailedException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
             logger.error(e.getMessage());
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
     @PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void>  updateStaff(@PathVariable ("id") String id,@RequestBody StaffDTO updateStaffdto){
+    public ResponseEntity<Void>  updateVehicle(@PathVariable ("id") String id,@RequestBody VehicleDTO updateVehicledto){
         try {
-            staffService.updateStaff(id,updateStaffdto);
-            logger.info("Staff updated : " + updateStaffdto);
+            vehicleService.updateVehicle(id,updateVehicledto);
+            logger.info("Vehicle updated : " + updateVehicledto);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (StaffNotFoundException e) {
+        } catch (VehicleNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             logger.error(e.getMessage());
@@ -49,23 +49,23 @@ public class StaffController {
         }
     }
     @DeleteMapping(value = "/{id}")
-    public ResponseEntity<String> deleteStaff(@PathVariable ("id") String id) {
+    public ResponseEntity<String> deleteVehicle(@PathVariable ("id") String id) {
         try {
-            staffService.deleteStaff(id);
+            vehicleService.deleteVehicle(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        } catch (StaffNotFoundException e) {
+        } catch (VehicleNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping(value = "/allstaff",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<StaffDTO> getAllStaff(){
-        return staffService.getAllStaff();
+    @GetMapping(value = "/allvehicles",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<VehicleDTO> getAllVehicle(){
+        return vehicleService.getAllVehicles();
     }
     @GetMapping(value = "/{id}",produces =MediaType.APPLICATION_JSON_VALUE )
-    public StaffResponse getStaff(@PathVariable("id") String id){
-        return staffService.getSelectStaffById(id);
+    public VehicleResponse getVehicle(@PathVariable("id") String id){
+        return vehicleService.getSelectVehicleByCode(id);
     }
 
 }

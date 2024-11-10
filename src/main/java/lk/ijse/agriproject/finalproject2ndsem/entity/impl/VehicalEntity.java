@@ -1,6 +1,7 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
 
 import jakarta.persistence.*;
+import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "vehicle")
-public class VehicalEntity {
+public class VehicalEntity implements SuperEntity {
     @Id
     private String vehicle_code;
     private String license_plate_no;
@@ -19,8 +20,8 @@ public class VehicalEntity {
     private String status;
     private String Remarks;
 
-    @ManyToOne
-    @JoinColumn(name = "staff_id",referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "staff_id")
     private StaffEntity staff;
 
 

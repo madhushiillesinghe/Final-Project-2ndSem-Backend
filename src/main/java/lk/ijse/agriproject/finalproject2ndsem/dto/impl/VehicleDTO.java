@@ -10,12 +10,12 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 public class VehicleDTO implements SuperDTO, VehicleResponse {
-    private String vehicleCode;
-    private String licensePlateNo;
-    private String vehicleCategory;
-    private String fuelType;
+    private String vehicle_code;
+    private String license_plate_no;
+    private String vehicle_category;
+    private String fuel_type;
     private String status;
     private String remarks;
-    private String staffId;
+    private String staff_id; // This corresponds to the StaffEntity's ID
 
 }
