@@ -1,10 +1,10 @@
 package lk.ijse.agriproject.finalproject2ndsem.controller;
 
-import lk.ijse.agriproject.finalproject2ndsem.customObj.UserResponse;
-import lk.ijse.agriproject.finalproject2ndsem.dto.impl.UserDTO;
+import lk.ijse.agriproject.finalproject2ndsem.customObj.StaffResponse;
+import lk.ijse.agriproject.finalproject2ndsem.dto.impl.StaffDTO;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.UserNotFoundException;
-import lk.ijse.agriproject.finalproject2ndsem.service.UserService;
+import lk.ijse.agriproject.finalproject2ndsem.service.StaffService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +12,20 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.util.List;
 
 @RestController
-@RequestMapping(value = "/api/v1/users")
-public class UserController {
+@RequestMapping(value = "/api/v1/staff")
+public class StaffController {
     @Autowired
-    private UserService userService;
-    static Logger logger = LoggerFactory.getLogger(UserController.class);
-
+    private StaffService staffService;
+    static Logger logger = LoggerFactory.getLogger(StaffController.class);
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void > createUser(@RequestBody UserDTO buildUserDTO ){
+    public ResponseEntity<Void > createStaff(@RequestBody StaffDTO buildStaffDTO ){
         try {
-            userService.saveUser(buildUserDTO);
-            logger.info("User saved : " + buildUserDTO);
+            staffService.saveStaff(buildStaffDTO);
+            logger.info("Staff saved : " + buildStaffDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistFailedException e){
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -36,25 +34,23 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-    @PutMapping(value = "/{userEmail}",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Void>  updateUser(@PathVariable ("userEmail") String userEmail,@RequestBody UserDTO updateUserdto){
+    @PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseEntity<Void>  updateStaff(@PathVariable ("id") String id,@RequestBody StaffDTO updateStaffdto){
         try {
-            userService.updateUser(userEmail,updateUserdto);
-            logger.info("User updated : " + updateUserdto);
+            staffService.updateStaff(id,updateStaffdto);
+            logger.info("Staff updated : " + updateStaffdto);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             logger.error(e.getMessage());
-            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @DeleteMapping(value = "/{userEmail}")
-    public ResponseEntity<String> deleteUser(@PathVariable ("userEmail") String userEmail) {
+    @DeleteMapping(value = "/{id}")
+    public ResponseEntity<String> deleteStaff(@PathVariable ("id") String id) {
         try {
-            userService.deleteUser(userEmail);
+            staffService.deleteStaff(id);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         } catch (UserNotFoundException e) {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -62,12 +58,13 @@ public class UserController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-    @GetMapping(value = "/allusers",produces = MediaType.APPLICATION_JSON_VALUE)
-    public List<UserDTO> getAllUsers(){
-        return userService.getAllUsers();
+    @GetMapping(value = "/allstaff",produces = MediaType.APPLICATION_JSON_VALUE)
+    public List<StaffDTO> getAllStaff(){
+        return staffService.getAllStaff();
     }
-    @GetMapping(value = "/{userEmail}",produces =MediaType.APPLICATION_JSON_VALUE )
-    public UserResponse getUser(@PathVariable("userEmail") String userEmail){
-        return userService.getSelectUserByEmail(userEmail);
+    @GetMapping(value = "/{id}",produces =MediaType.APPLICATION_JSON_VALUE )
+    public StaffResponse getStaff(@PathVariable("id") String id){
+        return staffService.getSelectStaffById(id);
     }
+
 }
