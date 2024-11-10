@@ -1,7 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.dto.impl;
 
-import jakarta.persistence.Column;
-import lk.ijse.agriproject.finalproject2ndsem.customObj.Response;
+import lk.ijse.agriproject.finalproject2ndsem.customObj.UserResponse;
 import lk.ijse.agriproject.finalproject2ndsem.dto.SuperDTO;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.CropEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.MoniteringLogEntity;
@@ -16,7 +15,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class FieldDTO implements SuperDTO, Response {
+public class FieldDTO implements SuperDTO, UserResponse {
     private String fieldCode;
     private String fieldName;
     private Point fieldLocation;

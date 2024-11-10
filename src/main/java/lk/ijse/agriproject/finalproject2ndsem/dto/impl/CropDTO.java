@@ -1,9 +1,7 @@
 package lk.ijse.agriproject.finalproject2ndsem.dto.impl;
 
-import jakarta.persistence.Column;
-import lk.ijse.agriproject.finalproject2ndsem.customObj.Response;
+import lk.ijse.agriproject.finalproject2ndsem.customObj.UserResponse;
 import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
-import lk.ijse.agriproject.finalproject2ndsem.entity.impl.FieldEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.MoniteringLogEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -14,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CropDTO implements SuperEntity, Response {
+public class CropDTO implements SuperEntity, UserResponse {
     private String code;
     private String commonName;
     private String scientificName;
