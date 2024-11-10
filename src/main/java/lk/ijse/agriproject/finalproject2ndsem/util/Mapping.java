@@ -82,13 +82,13 @@ public class Mapping {
 
 
     //moniteringLog mapping
-    public MoniteringLogDTO convertToMoniteringLogDTO(CropEntity moniteringLogEntity){
+    public MoniteringLogDTO convertToMoniteringLogDTO(MoniteringLogEntity moniteringLogEntity){
         return modelMapper.map(moniteringLogEntity, MoniteringLogDTO.class);
     }
     public MoniteringLogEntity convertToMoniteringLogEntity(MoniteringLogDTO moniteringLogDTO){
         return modelMapper.map(moniteringLogDTO, MoniteringLogEntity.class);
     }
-    public List<CropDTO> convertToMoniteringLogDTO(List<MoniteringLogEntity> moniteringLogs ){
+    public List<MoniteringLogDTO> convertToMoniteringLogDTO(List<MoniteringLogEntity> moniteringLogs ){
         return modelMapper.map(moniteringLogs,new TypeToken<List<MoniteringLogDTO>>() {}.getType());
     }
 

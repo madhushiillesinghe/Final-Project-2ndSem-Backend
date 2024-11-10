@@ -6,7 +6,6 @@ import lk.ijse.agriproject.finalproject2ndsem.customObj.impl.CropErrorResponse;
 import lk.ijse.agriproject.finalproject2ndsem.dao.CropDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.CropDTO;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.CropEntity;
-import lk.ijse.agriproject.finalproject2ndsem.entity.impl.FieldEntity;
 import lk.ijse.agriproject.finalproject2ndsem.exception.CropNotFoundException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.UserNotFoundException;
@@ -36,7 +35,7 @@ public class CropServiceIMPL implements CropService {
     public void updateCrop(CropDTO cropDTO) {
         Optional<CropEntity> updateByCode=cropDao.findById(cropDTO.getCode());
         if(!updateByCode.isPresent()){
-            throw new UserNotFoundException("Crop not found");
+            throw new CropNotFoundException("Crop not found");
         }else {
             updateByCode.get().setCategory(cropDTO.getCategory());
             updateByCode.get().setCrop_image(cropDTO.getCropImage());

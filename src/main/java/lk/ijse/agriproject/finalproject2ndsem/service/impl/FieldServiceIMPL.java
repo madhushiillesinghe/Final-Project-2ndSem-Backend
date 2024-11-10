@@ -3,12 +3,9 @@ package lk.ijse.agriproject.finalproject2ndsem.service.impl;
 import jakarta.transaction.Transactional;
 import lk.ijse.agriproject.finalproject2ndsem.customObj.FieldResponse;
 import lk.ijse.agriproject.finalproject2ndsem.customObj.impl.FieldErrorResponse;
-import lk.ijse.agriproject.finalproject2ndsem.customObj.impl.UserErrorResponse;
 import lk.ijse.agriproject.finalproject2ndsem.dao.FieldDAO;
-import lk.ijse.agriproject.finalproject2ndsem.dao.UserDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.FieldDTO;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.FieldEntity;
-import lk.ijse.agriproject.finalproject2ndsem.entity.impl.UserEntity;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.FieldNotFoundException;
 import lk.ijse.agriproject.finalproject2ndsem.exception.UserNotFoundException;
@@ -40,7 +37,7 @@ public class FieldServiceIMPL implements FieldService {
     public void updateField(FieldDTO fieldDTO) {
         Optional<FieldEntity> updateByCode=fieldDAO.findById(fieldDTO.getFieldCode());
         if(!updateByCode.isPresent()){
-            throw new UserNotFoundException("Field not found");
+            throw new FieldNotFoundException("Field not found");
         }else {
             updateByCode.get().setField_image2(fieldDTO.getFieldImage2());
             updateByCode.get().setField_image1(fieldDTO.getFieldImage1());
