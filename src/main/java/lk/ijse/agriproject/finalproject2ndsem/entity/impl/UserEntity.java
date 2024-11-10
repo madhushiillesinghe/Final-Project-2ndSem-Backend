@@ -1,7 +1,7 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
 import jakarta.persistence.*;
-import lk.ijse.agriproject.finalproject.entity.SuperEntity;
 import lk.ijse.agriproject.finalproject2ndsem.embedded.Role;
+import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

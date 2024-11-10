@@ -13,8 +13,17 @@ import lombok.NoArgsConstructor;
 @Table(name = "equipment")
 public class EquipmentEntity implements SuperEntity {
     @Id
-    private String code;
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "id",nullable = false)
+    private String id;
+    private String name;
+    private String type;
+    private String status;
+    @OneToOne
+    @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private StaffEntity staff;
+    @OneToOne
+    @JoinColumn(name = "field_code", referencedColumnName = "field_code")
+    private FieldEntity field;
+
+
 }
+
