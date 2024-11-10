@@ -1,6 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.dto.impl;
 
-import lk.ijse.agriproject.finalproject2ndsem.customObj.UserResponse;
+import lk.ijse.agriproject.finalproject2ndsem.customObj.CropResponse;
 import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.MoniteringLogEntity;
 import lombok.AllArgsConstructor;
@@ -12,7 +12,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class CropDTO implements SuperEntity, UserResponse {
+public class CropDTO implements SuperEntity, CropResponse {
     private String code;
     private String commonName;
     private String scientificName;

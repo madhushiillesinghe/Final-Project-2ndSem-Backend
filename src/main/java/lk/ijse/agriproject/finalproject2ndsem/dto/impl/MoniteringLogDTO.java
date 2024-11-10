@@ -1,6 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.dto.impl;
 
-import lk.ijse.agriproject.finalproject2ndsem.customObj.UserResponse;
+import lk.ijse.agriproject.finalproject2ndsem.customObj.MoniteringLogResponse;
 import lk.ijse.agriproject.finalproject2ndsem.dto.SuperDTO;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.CropEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.StaffEntity;
@@ -13,7 +13,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class MoniteringLogDTO implements SuperDTO, UserResponse {
+public class MoniteringLogDTO implements SuperDTO, MoniteringLogResponse {
     private String logCode;
     private Date logDate;
     private String observation;

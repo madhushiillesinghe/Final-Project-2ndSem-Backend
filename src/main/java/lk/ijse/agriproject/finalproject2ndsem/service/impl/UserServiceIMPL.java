@@ -18,7 +18,7 @@ import java.util.Optional;
 
 @Service
 @Transactional
-public class UserServiceImpl implements UserService {
+public class UserServiceIMPL implements UserService {
 
     @Autowired
     private UserDAO userDao;
