@@ -49,7 +49,7 @@ public class MoniteringLogServiceIMPL implements MoniteringLogService {
         }else {
             updateById.get().setLogDate(moniteringLogDTO.getLogDate());
             updateById.get().setObservation(moniteringLogDTO.getObservation());
-            updateById.get().setObservedImage(moniteringLogDTO.getObservation());
+            updateById.get().setObservedImage(moniteringLogDTO.getObservedImage());
         }
     }
 
