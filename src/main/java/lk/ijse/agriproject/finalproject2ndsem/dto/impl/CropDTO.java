@@ -14,12 +14,12 @@ import java.util.List;
 @Data
 public class CropDTO implements SuperEntity, CropResponse {
     private String code;
-    private String commonName;
-    private String scientificName;
-    private String cropImage;
+    private String common_name;
+    private String scientific_name;
+    private String crop_image;
     private String category;
     private String season;
-    private String fieldCode;
+    private String field_code;
     private List<MoniteringLogEntity> logs;
 
 }

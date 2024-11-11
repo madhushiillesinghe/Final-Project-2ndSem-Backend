@@ -5,8 +5,9 @@ import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.awt.Point;
 
-import java.awt.*;
+
 import java.util.ArrayList;
 import java.util.List;
 

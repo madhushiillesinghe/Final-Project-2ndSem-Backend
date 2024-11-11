@@ -8,21 +8,20 @@ import lk.ijse.agriproject.finalproject2ndsem.entity.impl.StaffEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import java.awt.Point;
 
-import java.awt.*;
 import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 public class FieldDTO implements SuperDTO, FieldResponse {
-    private String fieldCode;
-    private String fieldName;
-    private Point fieldLocation;
-    private double extentSize;
-    private String fieldImage1;
-    private String fieldImage2;
-    private String equipmentId;
+    private String field_code;
+    private String field_name;
+    private Point field_location;
+    private double extent_size;
+    private String field_image_1;
+    private String field_image_2;
     private List<StaffEntity> staffEntityList;
     private List<CropEntity> crops;
     private List<MoniteringLogEntity> monitoringLogs;

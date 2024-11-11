@@ -24,7 +24,7 @@ public class CropEntity implements SuperEntity {
     private String category;
     private String season;
     @ManyToOne
-    @JoinColumn(name = "field_id", referencedColumnName = "field_code")
+    @JoinColumn(name = "field_code", referencedColumnName = "field_code")
     private FieldEntity field;
 
     @ManyToMany(mappedBy = "crops")
