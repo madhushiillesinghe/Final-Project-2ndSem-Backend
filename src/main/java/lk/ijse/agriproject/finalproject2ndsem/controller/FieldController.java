@@ -29,11 +29,11 @@ public class FieldController {
     static Logger logger = LoggerFactory.getLogger(FieldController.class);
 
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void> createField(
+    public ResponseEntity< String> createField(
             @RequestPart("fieldCode") String fieldCode,
             @RequestPart("fieldName") String fieldName,
             @RequestPart("fieldLocation") String fieldLocation,
-            @RequestPart("extentSize") double extentSize,
+            @RequestPart("extentSize") String extentSize,
             @RequestPart("fieldImage1") MultipartFile fieldImage1,
             @RequestPart("fieldImage2") MultipartFile fieldImage2) {
         try {
@@ -46,7 +46,7 @@ public class FieldController {
             buildFieldDTO.setFieldCode(fieldCode);
             buildFieldDTO.setFieldLocation(location);
             buildFieldDTO.setFieldName(fieldName);
-            buildFieldDTO.setExtentSize(extentSize);
+            buildFieldDTO.setExtentSize(Double.parseDouble(extentSize));
             buildFieldDTO.setFieldImage1(base64image1);
             buildFieldDTO.setFieldImage2(base64image2);
 
@@ -79,11 +79,11 @@ public class FieldController {
 
 
         @PutMapping(value = "/{fieldcode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<Void > UpdateField(
+    public ResponseEntity<String> UpdateField(
             @PathVariable("fieldcode") String fieldcode,
             @RequestPart("fieldName") String fieldName,
             @RequestPart("fieldLocation") String fieldLocation,
-            @RequestPart("extentSize") double extentSize,
+            @RequestPart("extentSize") String extentSize,
             @RequestPart("fieldImage1") MultipartFile fieldImage1,
             @RequestPart("fieldImage2") MultipartFile fieldImage2
     ) {
@@ -99,7 +99,7 @@ public class FieldController {
             buildFieldDTO.setFieldCode(fieldcode);
             buildFieldDTO.setFieldLocation(location);
             buildFieldDTO.setFieldName(fieldName);
-            buildFieldDTO.setExtentSize(extentSize);
+            buildFieldDTO.setExtentSize(Double.parseDouble(extentSize));
             buildFieldDTO.setFieldImage1(base64ProfilePic);
             buildFieldDTO.setFieldImage2(base64image2);
 
