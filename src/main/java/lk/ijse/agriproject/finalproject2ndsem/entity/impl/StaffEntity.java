@@ -21,15 +21,17 @@ import java.util.List;
 @Entity
 public class StaffEntity implements SuperEntity {
     @Id
-    private String staff_id;
+    private String id;
     private Name name;
     private String designation;
     @Enumerated(EnumType.STRING)
     private Gender gender;
-    private Date joined_date;
+    @Column(name = "join_date")
+    private Date joinedDate;
     private Date dob;
     private Address address;
-    private String contact_no;
+    @Column(name = "contact_no")
+    private String contactNo;
     @Column(unique = true)
     private String email;
     @Enumerated(EnumType.STRING)
@@ -46,8 +48,8 @@ public class StaffEntity implements SuperEntity {
     @ManyToMany
     @JoinTable(
             name = "staff_field",
-            joinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "staff_id"),
-            inverseJoinColumns = @JoinColumn(name = "field_code", referencedColumnName = "field_code")
+            joinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name = "field_code", referencedColumnName = "fieldCode")
     )
     private List<FieldEntity> fields = new ArrayList<>();
 }

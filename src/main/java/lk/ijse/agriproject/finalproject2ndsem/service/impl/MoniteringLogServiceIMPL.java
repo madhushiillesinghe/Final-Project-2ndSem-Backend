@@ -36,7 +36,7 @@ public class MoniteringLogServiceIMPL implements MoniteringLogService {
     @Override
     public void saveMoniteringLog(MoniteringLogDTO moniteringLogDTO) {
         MoniteringLogEntity moniteringLogsave= moniteringLogDAO.save(mapping.convertToMoniteringLogEntity(moniteringLogDTO));
-        if(moniteringLogsave == null && moniteringLogsave.getLog_code() == null ) {
+        if(moniteringLogsave == null && moniteringLogsave.getLogCode() == null ) {
             throw new DataPersistFailedException("Cannot saved MoniteringLog");
         }
     }
@@ -47,9 +47,9 @@ public class MoniteringLogServiceIMPL implements MoniteringLogService {
         if(!updateById.isPresent()){
             throw new MoniteringLogNotFoundException("MoniteringLog not found");
         }else {
-            updateById.get().setLog_date(moniteringLogDTO.getLogDate());
+            updateById.get().setLogDate(moniteringLogDTO.getLogDate());
             updateById.get().setObservation(moniteringLogDTO.getObservation());
-            updateById.get().setObserved_image(moniteringLogDTO.getObservation());
+            updateById.get().setObservedImage(moniteringLogDTO.getObservation());
         }
     }
 

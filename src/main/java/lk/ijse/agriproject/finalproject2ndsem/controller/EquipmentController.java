@@ -46,6 +46,7 @@ public class EquipmentController {
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             logger.error(e.getMessage());
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

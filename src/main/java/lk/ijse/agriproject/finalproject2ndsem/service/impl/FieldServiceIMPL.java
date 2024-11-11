@@ -28,7 +28,7 @@ public class FieldServiceIMPL implements FieldService {
     @Override
     public void saveField(FieldDTO fieldDTO) {
         FieldEntity fieldsave= fieldDAO.save(mapping.convertToFieldEntity(fieldDTO));
-        if(fieldsave == null && fieldsave.getField_code() == null ) {
+        if(fieldsave == null && fieldsave.getFieldCode() == null ) {
             throw new DataPersistFailedException("Cannot saved Field");
         }
     }
@@ -39,11 +39,11 @@ public class FieldServiceIMPL implements FieldService {
         if(!updateByCode.isPresent()){
             throw new FieldNotFoundException("Field not found");
         }else {
-            updateByCode.get().setField_image2(fieldDTO.getField_image_2());
-            updateByCode.get().setField_image1(fieldDTO.getField_image_1());
-            updateByCode.get().setField_name(fieldDTO.getField_name());
-            updateByCode.get().setField_location(fieldDTO.getField_location());
-            updateByCode.get().setExtent_size(fieldDTO.getExtent_size());
+            updateByCode.get().setFieldImage2(fieldDTO.getFieldImage2());
+            updateByCode.get().setFieldImage1(fieldDTO.getFieldImage1());
+            updateByCode.get().setFieldName(fieldDTO.getFieldName());
+            updateByCode.get().setFieldLocation(fieldDTO.getFieldLocation());
+            updateByCode.get().setExtentSize(fieldDTO.getExtentSize());
 
         }
     }

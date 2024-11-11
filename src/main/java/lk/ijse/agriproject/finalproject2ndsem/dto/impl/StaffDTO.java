@@ -21,18 +21,18 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class StaffDTO implements SuperDTO, StaffResponse {
-    private String staff_id;
+    private String id;
     private Name name;
     private String designation;
     private Gender gender;
-    private Date joined_date;
+    private Date joinedDate;
     private Date dob;
     private Address address;
-    private String contact_no;
+    private String contactNo;
     private String email;
     private Role role;
     private EquipmentEntity equipment;
     private List<MoniteringLogEntity> moniteringLogs;
-    private List<VehicalEntity> vehicles;
+//    private List<VehicalEntity> vehicles;
     private List<FieldEntity> fields;
 }

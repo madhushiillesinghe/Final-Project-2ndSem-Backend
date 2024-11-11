@@ -27,25 +27,25 @@ public class CropController {
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void > createCrop(
             @RequestPart("code") String code,
-            @RequestPart("common_name") String common_name,
-            @RequestPart("scientific_name") String scientific_name,
+            @RequestPart("commonName") String commonName,
+            @RequestPart("scientificName") String scientificName,
             @RequestPart("category") String category,
             @RequestPart("season") String season,
-            @RequestPart("crop_image") MultipartFile crop_image,
-            @RequestPart("field_code") String field_code
+            @RequestPart("cropImage") MultipartFile cropImage,
+            @RequestPart("fieldCode") String fieldCode
     ) {
 
         try {
-            String base64ProfilePic = AppUtill.toBase64Profilepic(crop_image);
+            String base64ProfilePic = AppUtill.toBase64Profilepic(cropImage);
             // build the user object
             CropDTO buildCropDTO = new CropDTO();
             buildCropDTO.setCategory(category);
             buildCropDTO.setCode(code);
             buildCropDTO.setSeason(season);
-            buildCropDTO.setScientific_name(scientific_name);
-            buildCropDTO.setCommon_name(common_name);
-            buildCropDTO.setField_code(field_code);
-            buildCropDTO.setCrop_image(base64ProfilePic);
+            buildCropDTO.setScientificName(scientificName);
+            buildCropDTO.setCommonName(commonName);
+            buildCropDTO.setFieldCode(fieldCode);
+            buildCropDTO.setCropImage(base64ProfilePic);
 
             cropService.saveCrop(buildCropDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
@@ -61,25 +61,25 @@ public class CropController {
     @PutMapping(value = "/{code}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void > UpdateCrop(
             @PathVariable("code") String code,
-            @RequestPart("common_name") String common_name,
-            @RequestPart("scientific_name") String scientific_name,
+            @RequestPart("commonName") String commonName,
+            @RequestPart("scientificName") String scientificName,
             @RequestPart("category") String category,
             @RequestPart("season") String season,
-            @RequestPart("crop_image") MultipartFile crop_image,
-            @RequestPart("field_code") String field_code
+            @RequestPart("cropImage") MultipartFile cropImage,
+            @RequestPart("fieldCode") String fieldCode
     ) {
 
         try {
-            String base64ProfilePic = AppUtill.toBase64Profilepic(crop_image);
+            String base64ProfilePic = AppUtill.toBase64Profilepic(cropImage);
             // build the user object
             CropDTO buildCropDTO = new CropDTO();
             buildCropDTO.setCategory(category);
             buildCropDTO.setCode(code);
             buildCropDTO.setSeason(season);
-            buildCropDTO.setScientific_name(scientific_name);
-            buildCropDTO.setCommon_name(common_name);
-            buildCropDTO.setField_code(field_code);
-            buildCropDTO.setCrop_image(base64ProfilePic);
+            buildCropDTO.setScientificName(scientificName);
+            buildCropDTO.setCommonName(commonName);
+            buildCropDTO.setFieldCode(fieldCode);
+            buildCropDTO.setCropImage(base64ProfilePic);
 
             cropService.updateCrop(code,buildCropDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);

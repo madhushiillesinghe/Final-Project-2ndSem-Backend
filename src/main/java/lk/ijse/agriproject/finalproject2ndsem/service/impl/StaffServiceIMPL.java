@@ -26,7 +26,7 @@ public class StaffServiceIMPL implements StaffService {
     @Override
     public void saveStaff(StaffDTO staffDTO) {
         StaffEntity staffsave= staffDAO.save(mapping.convertToStaffEntity(staffDTO));
-        if(staffsave == null && staffsave.getStaff_id() == null ) {
+        if(staffsave == null && staffsave.getId() == null ) {
             throw new DataPersistFailedException("Cannot saved Staff Member");
         }
     }
@@ -40,11 +40,11 @@ public class StaffServiceIMPL implements StaffService {
             updateById.get().setRole(staffDTO.getRole());
             updateById.get().setDob(staffDTO.getDob());
             updateById.get().setAddress(staffDTO.getAddress());
-            updateById.get().setContact_no(staffDTO.getContact_no());
+            updateById.get().setContactNo(staffDTO.getContactNo());
             updateById.get().setDesignation(staffDTO.getDesignation());
             updateById.get().setName(staffDTO.getName());
             updateById.get().setGender(staffDTO.getGender());
-            updateById.get().setJoined_date(staffDTO.getJoined_date());
+            updateById.get().setJoinedDate(staffDTO.getJoinedDate());
         }
     }
     @Override

@@ -38,10 +38,10 @@ public class CropServiceIMPL implements CropService {
             throw new CropNotFoundException("Crop not found");
         }else {
             updateByCode.get().setCategory(cropDTO.getCategory());
-            updateByCode.get().setCrop_image(cropDTO.getCrop_image());
+            updateByCode.get().setCropImage(cropDTO.getCropImage());
             updateByCode.get().setSeason(cropDTO.getSeason());
-            updateByCode.get().setScientific_name(cropDTO.getScientific_name());
-            updateByCode.get().setCommon_name(cropDTO.getCommon_name());
+            updateByCode.get().setScientificName(cropDTO.getScientificName());
+            updateByCode.get().setCommonName(cropDTO.getCommonName());
         }
     }
 

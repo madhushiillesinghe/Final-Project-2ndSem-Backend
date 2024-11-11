@@ -16,12 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 public class FieldDTO implements SuperDTO, FieldResponse {
-    private String field_code;
-    private String field_name;
-    private Point field_location;
-    private double extent_size;
-    private String field_image_1;
-    private String field_image_2;
+    private String fieldCode;
+    private String fieldName;
+    private Point fieldLocation;
+    private double extentSize;
+    private String fieldImage1;
+    private String fieldImage2;
     private List<StaffEntity> staffEntityList;
     private List<CropEntity> crops;
     private List<MoniteringLogEntity> monitoringLogs;

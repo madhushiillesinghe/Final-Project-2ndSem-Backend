@@ -50,8 +50,8 @@ public class EquipmentServiceIMPL implements EquipmentService {
 
     @Override
     public void updateEquipment(String code,EquipmentDTO equipmentDTO) {
-        Optional<StaffEntity> staffDAOById = staffDAO.findById(equipmentDTO.getStaff_id());
-        Optional<FieldEntity> fieldDAOById = fieldDAO.findById(equipmentDTO.getField_code());
+        Optional<StaffEntity> staffDAOById = staffDAO.findById(equipmentDTO.getId());
+        Optional<FieldEntity> fieldDAOById = fieldDAO.findById(equipmentDTO.getFieldCode());
         Optional<EquipmentEntity> updateByCode=equipmentDAO.findById(code);
         if(!updateByCode.isPresent()){
             throw new EquipmentNotFoundException("Equipment not found");
@@ -59,7 +59,6 @@ public class EquipmentServiceIMPL implements EquipmentService {
             updateByCode.get().setName(equipmentDTO.getName());
             updateByCode.get().setType(equipmentDTO.getType());
             updateByCode.get().setStatus(equipmentDTO.getStatus());
-            updateByCode.get().setStaff(staffDAOById.get());
             updateByCode.get().setField(fieldDAOById.get());
 
         }

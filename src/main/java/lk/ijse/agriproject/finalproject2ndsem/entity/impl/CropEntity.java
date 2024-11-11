@@ -17,14 +17,14 @@ import java.util.List;
 public class CropEntity implements SuperEntity {
     @Id
     private String code;
-    private String common_name;
-    private String scientific_name;
-    @Column(columnDefinition = "LONGTEXT")
-    private String crop_image;
+    private String commonName;
+    private String scientificName;
+    @Column(name = "crop_image",columnDefinition = "LONGTEXT")
+    private String cropImage;
     private String category;
     private String season;
     @ManyToOne
-    @JoinColumn(name = "field_code", referencedColumnName = "field_code")
+    @JoinColumn(name = "field_code", referencedColumnName = "fieldCode")
     private FieldEntity field;
 
     @ManyToMany(mappedBy = "crops")

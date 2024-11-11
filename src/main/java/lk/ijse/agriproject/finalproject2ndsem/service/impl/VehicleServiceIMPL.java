@@ -35,7 +35,7 @@ public class VehicleServiceIMPL implements VehicleService {
         VehicalEntity vehicalEntity = mapping.convertToVehicleEntity(vehicleDTO);
         VehicalEntity vehiclesave= vehicleDAO.save(vehicalEntity);
         System.out.println(vehicalEntity+"At impl");
-         if(vehiclesave == null && vehiclesave.getVehicle_code()== null ) {
+         if(vehiclesave == null && vehiclesave.getVehicleCode()== null ) {
             throw new DataPersistFailedException("Cannot saved Vehicle");
         }
     }
@@ -43,15 +43,15 @@ public class VehicleServiceIMPL implements VehicleService {
     @Override
     public void updateVehicle(String code,VehicleDTO vehicleDTO) {
         Optional<VehicalEntity> updateByCode=vehicleDAO.findById(code);
-        Optional<StaffEntity> staffDAOById = staffDAO.findById(vehicleDTO.getStaff_id());
+        Optional<StaffEntity> staffDAOById = staffDAO.findById(vehicleDTO.getStaffId());
         if(!updateByCode.isPresent()){
             throw new VehicleNotFoundException("Vehicle not found");
         }else {
-            updateByCode.get().setVehicle_category(vehicleDTO.getVehicle_category());
+            updateByCode.get().setVehicleCategory(vehicleDTO.getVehicleCategory());
             updateByCode.get().setStatus(vehicleDTO.getStatus());
             updateByCode.get().setRemarks(vehicleDTO.getRemarks());
-            updateByCode.get().setFuel_type(vehicleDTO.getFuel_type());
-            updateByCode.get().setLicense_plate_no(vehicleDTO.getLicense_plate_no());
+            updateByCode.get().setFuelType(vehicleDTO.getFuelType());
+            updateByCode.get().setLicensePlateNo(vehicleDTO.getLicensePlateNo());
             updateByCode.get().setStaff(staffDAOById.get());
         }
     }

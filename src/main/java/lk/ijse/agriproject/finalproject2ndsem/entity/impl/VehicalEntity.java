@@ -13,10 +13,14 @@ import lombok.NoArgsConstructor;
 @Table(name = "vehicle")
 public class VehicalEntity implements SuperEntity {
     @Id
-    private String vehicle_code;
-    private String license_plate_no;
-    private String vehicle_category;
-    private String fuel_type;
+    @Column(name = "vehicle_code")
+    private String vehicleCode;
+    @Column(name = "license_plate_no")
+    private String licensePlateNo;
+    @Column(name = "vehicle_category")
+    private String vehicleCategory;
+    @Column(name = "fuel_type")
+    private String fuelType;
     private String status;
     private String Remarks;
 

@@ -17,20 +17,20 @@ import java.util.List;
 @Table(name = "monitoring_log")
 public class MoniteringLogEntity implements SuperEntity {
         @Id
-        private String log_code;
-        private Date log_date;
+        private String logCode;
+        private Date logDate;
         private String observation;
         @Column(name = "observed_image",columnDefinition = "LONGTEXT")
-        private String observed_image;
+        private String observedImage;
 
         @ManyToOne
-        @JoinColumn(name = "field_code",referencedColumnName = "field_code")
+        @JoinColumn(name = "field_code",referencedColumnName = "fieldCode")
         private FieldEntity field;
 
         @ManyToMany
         @JoinTable(
                 name = "crop_monitering_log",
-                joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "log_code"),
+                joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "logCode"),
                 inverseJoinColumns = @JoinColumn(name = "crop_code",referencedColumnName = "code")
         )
         private List<CropEntity> crops = new ArrayList<>();
@@ -38,8 +38,8 @@ public class MoniteringLogEntity implements SuperEntity {
         @ManyToMany
         @JoinTable(
                 name = "monitoring_log_staff",
-                joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "log_code"),
-                inverseJoinColumns = @JoinColumn(name = "staff_id",referencedColumnName = "staff_id")
+                joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "logCode"),
+                inverseJoinColumns = @JoinColumn(name = "staff_id",referencedColumnName = "id")
         )
         private List<StaffEntity> staff = new ArrayList<>();
     }

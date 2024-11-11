@@ -18,10 +18,10 @@ public class EquipmentEntity implements SuperEntity {
     private String type;
     private String status;
     @OneToOne
-    @JoinColumn(name = "staff_id", referencedColumnName = "staff_id")
+    @JoinColumn(name = "staff_id", referencedColumnName = "id")
     private StaffEntity staff;
     @ManyToOne
-    @JoinColumn(name = "field_code", referencedColumnName = "field_code")
+    @JoinColumn(name = "field_code", referencedColumnName = "fieldCode")
     private FieldEntity field;
 }
 

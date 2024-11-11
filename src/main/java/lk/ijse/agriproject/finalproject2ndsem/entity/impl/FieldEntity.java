@@ -19,16 +19,18 @@ import java.util.List;
 public class FieldEntity implements SuperEntity {
 
     @Id
-    private String field_code;
-    private String field_name;
-    private Point field_location;
-    private double extent_size;
+    private String fieldCode;
+    @Column(name = "field_name")
+    private String fieldName;
+    @Column(name = "field_location")
+    private Point fieldLocation;
+    @Column(name = "extent_size")
+    private double extentSize;
+    @Column(name = "field_image1",columnDefinition = "LONGTEXT")
+    private String fieldImage1;
 
-    @Column(columnDefinition = "LONGTEXT")
-    private String field_image1;
-
-    @Column(columnDefinition = "LONGTEXT")
-    private String field_image2;
+    @Column(name = "field_image2",columnDefinition = "LONGTEXT")
+    private String fieldImage2;
 
     @OneToMany(mappedBy = "field")
     private List<CropEntity> crops = new ArrayList<>();
