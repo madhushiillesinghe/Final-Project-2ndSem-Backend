@@ -45,6 +45,7 @@ public class StaffServiceIMPL implements StaffService {
             updateById.get().setName(staffDTO.getName());
             updateById.get().setGender(staffDTO.getGender());
             updateById.get().setJoinedDate(staffDTO.getJoinedDate());
+            updateById.get().setFields(staffDTO.getFields());
         }
     }
     @Override
