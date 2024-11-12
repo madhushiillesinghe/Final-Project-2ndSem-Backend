@@ -29,6 +29,7 @@ public class StaffController {
             logger.info("Staff saved : " + buildStaffDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistFailedException e){
+            e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
             logger.error(e.getMessage());
