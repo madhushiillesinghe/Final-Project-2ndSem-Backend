@@ -62,7 +62,7 @@ public class LogCropController {
             moniteringLogDTO.setCrops(crops);
 
             // Save the monitoring log
-            moniteringLogService.updateMoniteringLog(logCode, moniteringLogDTO);
+            moniteringLogService.updateMoniteringLogCrop(logCode, moniteringLogDTO);
             return new ResponseEntity<>(HttpStatus.CREATED); // Return 201 status on success
 
         } catch (MoniteringLogNotFoundException e) {

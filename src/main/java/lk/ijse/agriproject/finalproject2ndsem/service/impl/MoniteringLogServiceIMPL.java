@@ -83,4 +83,34 @@ public class MoniteringLogServiceIMPL implements MoniteringLogService {
             return new MoniteringLogErrorResponse(0, "MoniteringLog not found");
         }
     }
+    @Override
+    public void updateMoniteringLogStaff(String code,MoniteringLogDTO moniteringLogDTO) {
+        Optional<MoniteringLogEntity> updateById=moniteringLogDAO.findById(code);
+        if(!updateById.isPresent()){
+            throw new MoniteringLogNotFoundException("MoniteringLog not found");
+        }else {
+            updateById.get().setLogDate(moniteringLogDTO.getLogDate());
+            updateById.get().setObservation(moniteringLogDTO.getObservation());
+            updateById.get().setObservedImage(moniteringLogDTO.getObservedImage());
+            updateById.get().setStaff(moniteringLogDTO.getStaff());
+            FieldEntity fieldEntity=new FieldEntity();
+            fieldEntity.setFieldCode(moniteringLogDTO.getFieldCode());
+            updateById.get().setField(fieldEntity);
+        }
+    }
+    @Override
+    public void updateMoniteringLogCrop(String code,MoniteringLogDTO moniteringLogDTO) {
+        Optional<MoniteringLogEntity> updateById=moniteringLogDAO.findById(code);
+        if(!updateById.isPresent()){
+            throw new MoniteringLogNotFoundException("MoniteringLog not found");
+        }else {
+            updateById.get().setLogDate(moniteringLogDTO.getLogDate());
+            updateById.get().setObservation(moniteringLogDTO.getObservation());
+            updateById.get().setObservedImage(moniteringLogDTO.getObservedImage());
+            updateById.get().setCrops(moniteringLogDTO.getCrops());
+            FieldEntity fieldEntity=new FieldEntity();
+            fieldEntity.setFieldCode(moniteringLogDTO.getFieldCode());
+            updateById.get().setField(fieldEntity);
+        }
+    }
 }

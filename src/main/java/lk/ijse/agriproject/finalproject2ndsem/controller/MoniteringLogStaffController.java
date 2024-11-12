@@ -65,7 +65,7 @@ public class MoniteringLogStaffController {
             moniteringLogDTO.setStaff(staff);
 
             // Save the monitoring log
-            moniteringLogService.updateMoniteringLog(logCode, moniteringLogDTO);
+            moniteringLogService.updateMoniteringLogStaff(logCode, moniteringLogDTO);
             return new ResponseEntity<>(HttpStatus.CREATED); // Return 201 status on success
 
         } catch (MoniteringLogNotFoundException e) {

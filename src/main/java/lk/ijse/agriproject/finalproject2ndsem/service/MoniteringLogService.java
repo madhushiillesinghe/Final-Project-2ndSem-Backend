@@ -15,5 +15,8 @@ public interface MoniteringLogService {
     void deleteMoniteringLog(String id);
     List<MoniteringLogDTO> getAllMoniteringLogs();
     MoniteringLogResponse getSelectMoniteringLogById(String id);
+     void updateMoniteringLogStaff(String code,MoniteringLogDTO moniteringLogDTO) ;
+    void updateMoniteringLogCrop(String code,MoniteringLogDTO moniteringLogDTO) ;
 
-}
+
+    }
