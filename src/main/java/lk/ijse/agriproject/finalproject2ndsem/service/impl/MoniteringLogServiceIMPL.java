@@ -9,6 +9,7 @@ import lk.ijse.agriproject.finalproject2ndsem.dao.MoniteringLogDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dao.UserDAO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.MoniteringLogDTO;
 import lk.ijse.agriproject.finalproject2ndsem.dto.impl.UserDTO;
+import lk.ijse.agriproject.finalproject2ndsem.entity.impl.FieldEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.MoniteringLogEntity;
 import lk.ijse.agriproject.finalproject2ndsem.entity.impl.UserEntity;
 import lk.ijse.agriproject.finalproject2ndsem.exception.DataPersistFailedException;
@@ -52,6 +53,9 @@ public class MoniteringLogServiceIMPL implements MoniteringLogService {
             updateById.get().setObservedImage(moniteringLogDTO.getObservedImage());
             updateById.get().setCrops(moniteringLogDTO.getCrops());
             updateById.get().setStaff(moniteringLogDTO.getStaff());
+            FieldEntity fieldEntity=new FieldEntity();
+            fieldEntity.setFieldCode(moniteringLogDTO.getFieldCode());
+            updateById.get().setField(fieldEntity);
         }
     }
 
