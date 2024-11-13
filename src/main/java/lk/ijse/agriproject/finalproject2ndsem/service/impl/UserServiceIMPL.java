@@ -11,6 +11,7 @@ import lk.ijse.agriproject.finalproject2ndsem.exception.UserNotFoundException;
 import lk.ijse.agriproject.finalproject2ndsem.service.UserService;
 import lk.ijse.agriproject.finalproject2ndsem.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -67,5 +68,10 @@ public class UserServiceIMPL implements UserService {
         }else {
             return new UserErrorResponse(0, "User not found");
         }
+    }
+
+    @Override
+    public UserDetailsService userDetailsService() {
+        return email -> userDao.findByEmail(email).orElseThrow(() -> new UserNotFoundException("User not found"));
     }
 }
