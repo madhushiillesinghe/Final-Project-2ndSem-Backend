@@ -32,7 +32,7 @@ public class StaffEntity implements SuperEntity {
     private Address address;
     @Column(name = "contact_no")
     private String contactNo;
-    @Column(unique = true)
+    @Column(unique = true,nullable = false)
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;

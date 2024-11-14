@@ -48,19 +48,29 @@ public ResponseEntity<JwtAuthResponse> signUp(
         @RequestPart("email") String email,
         @RequestPart("password") String password,
         @RequestPart("role") String role) {
-    try {
-        // Handle profile picture
-        // Build the user object
-        UserDTO buildUserDTO = new UserDTO();
-        buildUserDTO.setEmail(email);
-        buildUserDTO.setPassword(passwordEncoder.encode(password));
-        buildUserDTO.setRole(Role.valueOf(role));
-        // Send to the service layer
-        return ResponseEntity.ok(authenticationService.signUp(buildUserDTO));
-    } catch (DataPersistFailedException e) {
-        return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-    } catch (Exception e) {
-        return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+        try {
+            // Check if the email does not exist
+            if (authenticationService.getSelectStaffById(email) != null) {
+                // Build the UserDTO object with encoded password
+                UserDTO buildUserDTO = new UserDTO();
+                buildUserDTO.setEmail(email);
+                buildUserDTO.setPassword(passwordEncoder.encode(password));
+                buildUserDTO.setRole(Role.valueOf(role.toUpperCase()));
+
+                // Send UserDTO to the service layer to complete sign-up
+                JwtAuthResponse response = authenticationService.signUp(buildUserDTO);
+
+                return ResponseEntity.ok(response);
+            } else {
+                return new ResponseEntity<>(HttpStatus.CONFLICT); // Email already exists
+            }
+
+        } catch (DataPersistFailedException e) {
+            return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
+
     }
 }
 
