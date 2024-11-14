@@ -15,6 +15,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.security.crypto.password.PasswordEncoder;
+
 
 import java.util.List;
 
@@ -24,6 +26,8 @@ import java.util.List;
 public class UserController {
     @Autowired
     private UserService userService;
+    private final PasswordEncoder passwordEncoder;
+
     static Logger logger = LoggerFactory.getLogger(UserController.class);
 
 //    @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
@@ -39,15 +43,18 @@ public class UserController {
 //            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-@PreAuthorize("hasRole('OTHER')")
+@PreAuthorize("hasRole('SCIENTIST')")
 @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
-public List<UserDTO> getAllUsers() {
-    return userService.getAllUsers();
+public ResponseEntity<List<UserDTO>> getAllUsers() {
+    return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);
 }
 
     @PutMapping(value = "/{userEmail}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void>  updateUser(@PathVariable ("userEmail") String userEmail,@RequestBody UserDTO updateUserdto){
         try {
+            String password=updateUserdto.getPassword();
+            String encode = passwordEncoder.encode(password);
+            updateUserdto.setPassword(encode);
             userService.updateUser(userEmail,updateUserdto);
             logger.info("User updated : " + updateUserdto);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
