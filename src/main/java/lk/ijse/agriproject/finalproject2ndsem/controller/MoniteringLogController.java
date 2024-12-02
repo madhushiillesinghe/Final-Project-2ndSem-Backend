@@ -27,7 +27,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.List;
-
+@CrossOrigin(origins = "*" ,allowedHeaders ="*" )
 @RestController
 @RequestMapping(value = "/api/v1/logs")
 public class MoniteringLogController {

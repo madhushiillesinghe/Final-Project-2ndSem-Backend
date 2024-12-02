@@ -41,7 +41,6 @@ public class JWTConfig extends OncePerRequestFilter {
         jwtToken = initToken.substring(7);
         userEmail = jwtService.extractUsername(jwtToken);
 
-        // User Email Validation
         if (!StringUtils.isEmpty(userEmail) && SecurityContextHolder.getContext().getAuthentication() == null) {
             // Load user details based on email
             UserDetails loadedUser = userService.userDetailsService().loadUserByUsername(userEmail);

@@ -20,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 import java.time.format.DateTimeParseException;
 import java.util.Date;
 import java.util.List;
-
+@CrossOrigin(origins = "*" ,allowedHeaders ="*" )
 @RestController
 @RequestMapping(value = "/api/v1/logcrop")
 public class LogCropController {

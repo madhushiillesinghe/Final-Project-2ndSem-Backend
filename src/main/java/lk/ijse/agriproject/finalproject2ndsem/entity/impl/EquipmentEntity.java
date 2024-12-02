@@ -1,5 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
@@ -17,11 +18,13 @@ public class EquipmentEntity implements SuperEntity {
     private String name;
     private String type;
     private String status;
-    @OneToOne(cascade = CascadeType.ALL)
-    @JoinColumn(name = "staff_id", referencedColumnName = "id")
+    @ManyToOne( fetch = FetchType.LAZY)
+    @JoinColumn(name = "StaffId",nullable = false)
+    @JsonIgnore
     private StaffEntity staff;
     @ManyToOne
     @JoinColumn(name = "field_code", referencedColumnName = "fieldCode")
+    @JsonIgnore
     private FieldEntity field;
 }
 

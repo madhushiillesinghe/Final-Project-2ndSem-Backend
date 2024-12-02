@@ -1,4 +1,5 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
@@ -24,10 +25,12 @@ public class MoniteringLogEntity implements SuperEntity {
         private String observedImage;
 
         @ManyToOne
+        @JsonIgnore
         @JoinColumn(name = "field_code",referencedColumnName = "fieldCode")
         private FieldEntity field;
 
         @ManyToMany
+        @JsonIgnore
         @JoinTable(
                 name = "crop_monitering_log",
                 joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "logCode"),
@@ -36,6 +39,7 @@ public class MoniteringLogEntity implements SuperEntity {
         private List<CropEntity> crops = new ArrayList<>();
 
         @ManyToMany
+        @JsonIgnore
         @JoinTable(
                 name = "monitoring_log_staff",
                 joinColumns = @JoinColumn(name = "log_code",referencedColumnName = "logCode"),

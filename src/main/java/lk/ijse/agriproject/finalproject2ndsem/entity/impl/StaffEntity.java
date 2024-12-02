@@ -1,5 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.agriproject.finalproject2ndsem.embedded.Address;
 import lk.ijse.agriproject.finalproject2ndsem.embedded.Gender;
@@ -36,16 +37,21 @@ public class StaffEntity implements SuperEntity {
     private String email;
     @Enumerated(EnumType.STRING)
     private Role role;
-    @OneToOne(mappedBy = "staff", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    private EquipmentEntity equipments;
 
-    @ManyToMany(mappedBy = "staff")
+    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
+    private List<EquipmentEntity >equipment=new ArrayList<>();
+
+    @ManyToMany(mappedBy = "staff",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<MoniteringLogEntity> moniteringLogEntities = new ArrayList<>();
 
-    @OneToMany(mappedBy = "staff")
+    @OneToMany(mappedBy = "staff", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<VehicalEntity> vehicles = new ArrayList<>();
 
     @ManyToMany
+    @JsonIgnore
     @JoinTable(
             name = "staff_field",
             joinColumns = @JoinColumn(name = "staff_id", referencedColumnName = "id"),

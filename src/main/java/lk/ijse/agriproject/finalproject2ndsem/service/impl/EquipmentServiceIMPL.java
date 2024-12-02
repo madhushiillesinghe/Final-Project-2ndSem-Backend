@@ -50,7 +50,7 @@ public class EquipmentServiceIMPL implements EquipmentService {
 
     @Override
     public void updateEquipment(String code,EquipmentDTO equipmentDTO) {
-        Optional<StaffEntity> staffDAOById = staffDAO.findById(equipmentDTO.getId());
+        Optional<StaffEntity> staffDAOById = staffDAO.findById(equipmentDTO.getStaffId());
         Optional<FieldEntity> fieldDAOById = fieldDAO.findById(equipmentDTO.getFieldCode());
         Optional<EquipmentEntity> updateByCode=equipmentDAO.findById(code);
         if(!updateByCode.isPresent()){
@@ -60,6 +60,7 @@ public class EquipmentServiceIMPL implements EquipmentService {
             updateByCode.get().setType(equipmentDTO.getType());
             updateByCode.get().setStatus(equipmentDTO.getStatus());
             updateByCode.get().setField(fieldDAOById.get());
+            updateByCode.get().setStaff(staffDAOById.get());
 
         }
     }

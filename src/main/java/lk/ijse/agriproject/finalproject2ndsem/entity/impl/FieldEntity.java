@@ -1,5 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
@@ -32,15 +33,19 @@ public class FieldEntity implements SuperEntity {
     @Column(name = "field_image2",columnDefinition = "LONGTEXT")
     private String fieldImage2;
 
-    @OneToMany(mappedBy = "field")
+    @OneToMany(mappedBy = "field",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<CropEntity> crops = new ArrayList<>();
 
-    @OneToMany(mappedBy = "field")
+    @OneToMany(mappedBy = "field",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<MoniteringLogEntity> monitoringLogs = new ArrayList<>();
 
     @OneToMany(mappedBy = "field", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<EquipmentEntity> equipments;
 
-    @ManyToMany(mappedBy = "fields")
+    @ManyToMany(mappedBy = "fields",cascade = CascadeType.ALL, fetch = FetchType.LAZY)
+    @JsonIgnore
     private List<StaffEntity> staffEntityList = new ArrayList<>();
 }

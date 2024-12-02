@@ -17,7 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
 import java.util.List;
-
+@CrossOrigin(origins = "*" ,allowedHeaders ="*" )
 @RestController
 @RequestMapping(value = "/api/v1/crops")
 public class CropController {

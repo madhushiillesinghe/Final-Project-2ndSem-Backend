@@ -31,8 +31,8 @@ public class StaffDTO implements SuperDTO, StaffResponse {
     private String contactNo;
     private String email;
     private Role role;
-    private EquipmentEntity equipment;
+    private List<EquipmentEntity> equipment;
     private List<MoniteringLogEntity> moniteringLogs;
-//    private List<VehicalEntity> vehicles;
+    private List<VehicalEntity> vehicles;
     private List<FieldEntity> fields;
 }

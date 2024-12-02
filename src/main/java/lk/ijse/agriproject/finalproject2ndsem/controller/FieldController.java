@@ -20,6 +20,7 @@ import org.springframework.web.multipart.MultipartFile;
 import java.awt.*;
 import java.util.List;
 
+@CrossOrigin(origins = "*" ,allowedHeaders ="*" )
 @RestController
 @RequestMapping(value = "/api/v1/fields")
 public class FieldController {

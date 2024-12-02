@@ -11,11 +11,12 @@ import lombok.NoArgsConstructor;
 @Data
 
 @Embeddable
+
 public class Address {
-    private String line_1;
-    private String line_2;
-    private String line_3;
-    private String line_4;
-    private String line_5;
+    private String roadNo;
+    private String street;
+    private String city;
+    private String district;
+    private String province;
 
 }

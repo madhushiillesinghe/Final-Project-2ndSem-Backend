@@ -1,5 +1,6 @@
 package lk.ijse.agriproject.finalproject2ndsem.entity.impl;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lk.ijse.agriproject.finalproject2ndsem.entity.SuperEntity;
 import lombok.AllArgsConstructor;
@@ -24,8 +25,10 @@ public class VehicalEntity implements SuperEntity {
     private String status;
     private String Remarks;
 
+
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "staff_id", nullable = false) // Ensures referential integrity
+    @JsonIgnore
     private StaffEntity staff;
 
 
