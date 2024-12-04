@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -24,6 +25,7 @@ public class CropController {
     @Autowired
     private CropService cropService;
     static Logger logger = LoggerFactory.getLogger(CropController.class);
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void > createCrop(
             @RequestPart("code") String code,
@@ -57,7 +59,7 @@ public class CropController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @PutMapping(value = "/{code}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<Void > UpdateCrop(
             @PathVariable("code") String code,
@@ -91,6 +93,7 @@ public class CropController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @DeleteMapping(value = "/{code}")
     public ResponseEntity<String> deleteCrop(@PathVariable ("code") String code) {
         try {

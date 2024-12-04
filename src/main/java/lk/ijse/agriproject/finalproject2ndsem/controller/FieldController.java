@@ -14,6 +14,7 @@ import org.springframework.http.MediaType;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -27,7 +28,7 @@ public class FieldController {
     @Autowired
     private FieldService fieldService;
     static Logger logger = LoggerFactory.getLogger(FieldController.class);
-
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity< String> createField(
             @RequestPart("fieldCode") String fieldCode,
@@ -77,8 +78,8 @@ public class FieldController {
     }
 
 
-
-        @PutMapping(value = "/{fieldcode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
+    @PutMapping(value = "/{fieldcode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> UpdateField(
             @PathVariable("fieldcode") String fieldcode,
             @RequestPart("fieldName") String fieldName,
@@ -113,6 +114,7 @@ public class FieldController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @DeleteMapping(value = "/{code}")
     public ResponseEntity<String> deleteField(@PathVariable ("code") String code) {
         try {

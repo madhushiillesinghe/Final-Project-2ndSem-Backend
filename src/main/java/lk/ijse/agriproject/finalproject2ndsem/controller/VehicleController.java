@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class VehicleController {
     @Autowired
     private VehicleService vehicleService;
     static Logger logger = LoggerFactory.getLogger(VehicleController.class);
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void > createVehicle(@RequestBody VehicleDTO buildVehicleDTO ){
         try {
@@ -35,6 +37,7 @@ public class VehicleController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
     @PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void>  updateVehicle(@PathVariable ("id") String id,@RequestBody VehicleDTO updateVehicledto){
         try {
@@ -48,6 +51,7 @@ public class VehicleController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
     @DeleteMapping(value = "/{id}")
     public ResponseEntity<String> deleteVehicle(@PathVariable ("id") String id) {
         try {

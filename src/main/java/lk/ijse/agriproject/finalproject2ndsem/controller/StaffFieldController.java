@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 @CrossOrigin(origins = "*" ,allowedHeaders ="*" )
 @RestController
@@ -18,6 +19,8 @@ public class StaffFieldController {
     @Autowired
     private StaffService staffService;
     static Logger logger = LoggerFactory.getLogger(StaffFieldController.class);
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
+
     @PutMapping(value = "/{id}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void > updateStaffField(@PathVariable ("id") String id,@RequestBody StaffDTO buildStaffDTO ){
         try {

@@ -43,7 +43,6 @@ public class UserController {
 //            return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
 //        }
 //    }
-@PreAuthorize("hasRole('SCIENTIST')")
 @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 public ResponseEntity<List<UserDTO>> getAllUsers() {
     return new ResponseEntity<>(userService.getAllUsers(), HttpStatus.OK);

@@ -62,7 +62,7 @@ public ResponseEntity<JwtAuthResponse> signUp(
 
                 return ResponseEntity.ok(response);
             } else {
-                return new ResponseEntity<>(HttpStatus.CONFLICT); // Email already exists
+                return new ResponseEntity<>(HttpStatus.NOT_FOUND); // Email already exists
             }
 
         } catch (DataPersistFailedException e) {

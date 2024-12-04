@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,6 +23,7 @@ public class EquipmentController {
     @Autowired
     private EquipmentService equipmentService;
     static Logger logger = LoggerFactory.getLogger(EquipmentController.class);
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void > createEquipment(@RequestBody EquipmentDTO buildEquipmentDTO ){
         try {
@@ -36,7 +38,7 @@ public class EquipmentController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
     @PutMapping(value = "/{code}",consumes = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<Void>  updateEquipment(@PathVariable ("code") String code,@RequestBody EquipmentDTO updateEquipmentdto){
         try {
@@ -51,6 +53,7 @@ public class EquipmentController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_ADMINISTRATIVE')")
     @DeleteMapping(value = "/{code}")
     public ResponseEntity<String> deleteEquipment(@PathVariable ("code") String code) {
         try {

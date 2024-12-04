@@ -15,6 +15,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -38,7 +39,7 @@ public class MoniteringLogController {
 
 
 // Rest of your imports
-
+@PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @PostMapping(consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> createMonitoringLog(
             @RequestPart("logCode") String logCode,
@@ -84,7 +85,7 @@ public class MoniteringLogController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR); // Return 500 on general error
         }
     }
-
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @PutMapping(value = "/{logcode}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<String> updateMonitoringLog(
             @RequestPart("logCode") String logCode,
@@ -129,6 +130,7 @@ public class MoniteringLogController {
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+    @PreAuthorize("hasRole('ROLE_MANAGER')or hasRole('ROLE_SCIENTIST')")
     @DeleteMapping(value = "/{code}")
     public ResponseEntity<String> deleteLog(@PathVariable ("code") String code) {
         try {
