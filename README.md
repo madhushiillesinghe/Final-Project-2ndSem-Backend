@@ -88,7 +88,7 @@ This project is licensed under the MIT License. See the LICENSE file for details
 ### Backend Setup
 1. Clone the repository:
    ```bash
-   git clone https://github.com/madhushiillesinghe/Final-Project-Backend.git
+   git clone https://github.com/madhushiillesinghe/Final-Project-2nd-Sem.git
 
 
 
